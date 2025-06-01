@@ -13,11 +13,12 @@ module datapath (
     input Reg_Dst;
     input Reg_Write;
     input Alu_Src; 
-    input [2 : 0] Alu_Control;
+    input [3 : 0] Alu_Control;
     input Mem_Write;
     input Mem_Read;
     input Mem_To_Reg;
     output [31 : 0] Data_Out;
+    output lt, gt, eq;
 
     wire [4 : 0] Write_Address;
     wire [31 : 0] Read_Data_1;
@@ -52,11 +53,14 @@ module datapath (
     assign Data_in_ALU = (Alu_Src == 1'b1) ? Sign_extend : Read_Data_2;
 
     ALU al (
-        .inp1(Read_Data_1), 
-        .inp2(Data_in_ALU), 
-        .outp(Result_alu), 
+        .inp_1(Read_Data_1), 
+        .inp_2(Data_in_ALU), 
+        .result(Result_alu), 
         .sel_alu(Alu_Control), 
-        .overflow(Overflow)
+        .overflow(Overflow),
+        .lt(lt),
+        .gt(gt),
+        .eq(eq)
     );
 
     data_memory dm (

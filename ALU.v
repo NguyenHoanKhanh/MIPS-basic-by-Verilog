@@ -1,209 +1,258 @@
-`ifndef LAB3_1_v
-`define LAB3_1_v
-module AND32 (
-    inp1, inp2, outp
-);
-    input [31 : 0] inp1, inp2;
-    output [31 : 0] outp;
+`ifndef LAB4_V
+`define LAB4_V
 
-    assign outp = inp1 & inp2;
+module AND32 (
+    inp_1, inp_2, result
+);
+    input [31 : 0] inp_1, inp_2;
+    output [31 : 0] result;
+
+    assign result = inp_1 & inp_2;
 endmodule
 
 module OR32 (
-    inp1, inp2, outp
+    inp_1, inp_2, result
 );
-    input [31 : 0] inp1, inp2;
-    output [31 : 0] outp;
+    input [31 : 0] inp_1, inp_2;
+    output [31 : 0] result;
 
-    assign outp = inp1 | inp2;
+    assign result = inp_1 | inp_2;
 endmodule
 
 module XOR32 (
-    inp1, inp2, outp
+    inp_1, inp_2, result
 );
-    input [31 : 0] inp1, inp2;
-    output [31 : 0] outp;
+    input [31 : 0] inp_1, inp_2;
+    output [31 : 0] result;
 
-    assign outp = inp1 ^ inp2;
+    assign result = inp_1 ^ inp_2;
 endmodule
 
-module FullAdder (
-    inp1, inp2, Cin, Cout, Sum
+
+module fullAdder (
+    inp_1, inp_2, Cin, Sum, Cout
 );
-    input inp1, inp2;
+    input inp_1, inp_2;
     input Cin;
-    output Cout, Sum;
-    wire t1, t2, t3, t4;
+    output Sum, Cout;
 
-    xor x1 (t1, inp1, inp2);
-    xor x2 (Sum, t1, Cin);
-    and a1 (t3, inp1, inp2);
-    and a2 (t4, t1, Cin);
-    or o1 (Cout, t3, t4);
+    assign Sum = inp_1 ^ inp_2 ^ Cin;
+    assign Cout = ((inp_1 ^ inp_2) & Cin) | (inp_1 & inp_2);
 endmodule
 
-module INCREMENT (
-    inp1, outp, overflow, carryout
+module ADDER_32bit (
+    inp_1, inp_2, result, overflow
 );
-    input [31 : 0] inp1;
-    output [31 : 0] outp;
-    output overflow, carryout;
-    wire temp;
-    wire [31 : 0] inp2;
-    wire [31 : 0] t;
-    genvar i;
-    assign inp2 = 32'h00000001;
-    assign t[0] = 1'b0;
-    generate
-        for (i = 0; i < 31; i = i + 1)
-            begin
-                FullAdder fa (.inp1(inp1[i]), .inp2(inp2[i]), .Cin(t[i]), .Sum(outp[i]), .Cout(t[i + 1]));
-            end
-            FullAdder fa31 (.inp1(inp1[31]), .inp2(inp2[31]), .Cin(t[31]), .Sum(outp[31]), .Cout(temp));
-    endgenerate
-    assign carryout = temp;
-    assign overflow = ~(t[31] ^ temp);
-endmodule
-
-module ADD32 (
-    inp1, inp2, outp, overflow, carryout
-);
-    input [31 : 0] inp1, inp2;
-    output [31 : 0] outp;
+    input [31 : 0] inp_1, inp_2;
+    output [31 : 0] result;
     output overflow;
-    output carryout;
-    wire temp;
+    wire Cout;
     wire [31 : 0] t;
     genvar i;
-
     assign t[0] = 1'b0;
-    
     generate 
-        for (i = 0; i < 31; i = i + 1)
-            begin 
-                FullAdder F (.inp1(inp1[i]), .inp2(inp2[i]), .Cin(t[i]), .Sum(outp[i]), .Cout(t[i + 1]));
-            end
+        for(i = 0; i < 31; i = i + 1) begin
+            fullAdder fa (.inp_1(inp_1[i]), .inp_2(inp_2[i]), .Cin(t[i]), .Sum(result[i]), .Cout(t[i + 1]));
+        end 
+        fullAdder fa_last (.inp_1(inp_1[31]), .inp_2(inp_2[31]), .Cin(t[31]), .Sum(result[31]), .Cout(Cout));
     endgenerate
-        FullAdder lastF (.inp1(inp1[31]), .inp2(inp2[31]), .Cin(t[31]), .Sum(outp[31]), .Cout(temp));
-    assign carryout = temp;
-    assign overflow = ~(t[31] ^ temp);
-endmodule 
 
-module DECREMENT (
-    inp1, outp, carryout
+    assign overflow = (Cout ^ t[31]);
+endmodule
+
+module ADDER_1bit (
+    inp_1, result, overflow
 );
-    input [31 : 0] inp1;
-    output signed [31 : 0] outp;
-    output carryout;
-
-    wire [31 : 0] inp2;
+    input [31 : 0] inp_1;
+    output [31 : 0] result;
+    output overflow;   
+    wire [31 : 0] inp_2;
+    wire Cout;
     wire [31 : 0] t;
     genvar i;
-    assign inp2 = 32'hFFFFFFFF;
+
+    assign inp_2 = 32'd1;
     assign t[0] = 1'b0;
+
+    generate 
+        for(i = 0; i < 31; i = i + 1) begin
+            fullAdder fa (.inp_1(inp_1[i]), .inp_2(inp_2[i]), .Cin(t[i]), .Sum(result[i]), .Cout(t[i + 1]));
+        end
+        fullAdder fa_last (.inp_1(inp_1[31]), .inp_2(inp_2[31]), .Cin(t[31]), .Sum(result[31]), .Cout(Cout));
+    endgenerate
+
+    assign overflow = (Cout ^ t[31]);
+endmodule
+
+module SUB_32bit (
+    inp_1, inp_2, result
+);
+    input [31 : 0] inp_1, inp_2;
+    output [31 : 0] result;
+    wire Cout;
+    wire [31 : 0] not_inp_2;
+    wire [31 : 0] t;
+    genvar i;
+    assign t[0] = 1'b1;
+
+    generate 
+        for (i = 0; i < 32; i = i + 1) begin
+            not n (not_inp_2[i], inp_2[i]);
+        end
+    endgenerate
 
     generate
-        for (i = 0; i < 31; i = i + 1)
-            begin
-                FullAdder fa (.inp1(inp1[i]), .inp2(inp2[i]), .Cin(t[i]), .Sum(outp[i]), .Cout(t[i + 1]));
-            end
-                FullAdder fa31 (.inp1(inp1[31]), .inp2(inp2[31]), .Cin(t[31]), .Sum(outp[31]), .Cout(carryout));
+        for (i = 0; i < 31; i = i + 1) begin
+            fullAdder fa (.inp_1(inp_1[i]), .inp_2(not_inp_2[i]), .Cin(t[i]), .Sum(result[i]), .Cout(t[i + 1]));
+        end
+        fullAdder fa_last (.inp_1(inp_1[31]), .inp_2(not_inp_2[31]), .Cin(t[31]), .Sum(result[31]), .Cout(Cout));
     endgenerate
-endmodule 
+endmodule   
 
-module SUB32 (
-    inp1, inp2, Subout, carryout
+module SUB_1bit (
+    inp_1, result
 );
-    input [31 : 0] inp1, inp2;
-    output signed [31 : 0] Subout;
-    output carryout;
-    wire [31 : 0] t, temp_inp2;
-    assign t[0] = 1'b1;
+    input [31 : 0] inp_1;
+    output [31 : 0] result;
+    wire Cout;
+    wire [31 : 0] inp_2;
     genvar i;
+    wire [31 : 0] t;
+    assign inp_2 = 32'hFFFFFFFF;
+    assign t[0] = 1'b0;
 
     generate 
-        for (i = 0; i <= 31; i = i + 1)
-            begin
-                not n (temp_inp2[i], inp2[i]);
-            end
+        for(i = 0; i < 31; i = i + 1) begin
+            fullAdder fa (.inp_1(inp_1[i]), .inp_2(inp_2[i]), .Cin(t[i]), .Sum(result[i]), .Cout(t[i + 1]));
+        end
+        fullAdder fa_last (.inp_1(inp_1[31]), .inp_2(inp_2[31]), .Cin(t[31]), .Sum(result[31]), .Cout(Cout));
     endgenerate
-
-    generate 
-        for (i = 0; i < 31; i = i + 1)
-            begin
-                FullAdder fa (.inp1(inp1[i]), .inp2(temp_inp2[i]), .Cin(t[i]), .Sum(Subout[i]), .Cout(t[i + 1]));
-            end
-                FullAdder fa31 (.inp1(inp1[31]), .inp2(temp_inp2[31]), .Cin(t[31]), .Sum(Subout[31]), .Cout(carryout));
-    endgenerate
-endmodule 
+endmodule
 
 module COMPLEMENT (
-    inp, outp
+    inp_1, result
 );
-    input [31 : 0] inp;
+    input [31 : 0] inp_1;
+    output [31 : 0] result;
+    genvar i;
+    
+    generate 
+        for(i = 0; i < 32; i = i + 1) begin
+            not n (result[i], inp_1[i]);
+        end
+    endgenerate
+endmodule
+
+module COMPARE (
+    inp_1, inp_2, lt, gt, eq
+);
+    input [31 : 0] inp_1, inp_2;
+    output reg lt, gt, eq;
+    
+    always@(*) begin
+        lt = 1'b0;
+        gt = 1'b0;
+        eq = 1'b0;
+        if(inp_1 < inp_2) begin
+            lt = 1'b1;
+            $display("Number 1 is smaller than Number 2");
+        end
+        else if(inp_1 == inp_2) begin
+            eq = 1'b1;
+            $display("Number 1 is equal Number 2");
+        end
+        else if(inp_1 > inp_2) begin
+            gt = 1'b1;
+            $display("Number 1 is bigger than Number 2");
+        end
+    end
+endmodule
+
+module SHIFT_LEFT (
+    inp_1, inp_2, outp
+);
+    input [31 : 0] inp_1;
+    input [4 : 0] inp_2;
     output [31 : 0] outp;
 
-    assign outp = ~inp;
+    assign outp = inp_1 << inp_2;
+endmodule
+
+module SHIFT_RIGHT (
+    inp_1, inp_2, outp
+);
+    input [31 : 0] inp_1;
+    input [4 : 0] inp_2;
+    output [31 : 0] outp;
+
+    assign outp = inp_1 >> inp_2;
 endmodule
 
 module ALU (
-    inp1, inp2, outp, sel_alu, overflow
+    inp_1, inp_2, result, overflow, sel_alu, lt, gt, eq
 );
-    input [31 : 0] inp1, inp2;
-    input [2 : 0] sel_alu;
-    output reg [31 : 0] outp;
+    input [31 : 0] inp_1, inp_2;
+    input [3 : 0] sel_alu;
+    output reg [31 : 0] result;
+    output reg lt, gt, eq;
     output reg overflow;
-    wire [31 : 0] out_comp, out_and, out_xor, out_or, out_de, out_add, out_sub, out_inc;
-    wire overflow_add, overflow_in;
-    wire carryout_de, carryout_in, carryout_add, carryout_sub;
-    reg [31 : 0] temp_out;
-    reg temp_carry, temp_over;
 
-    COMPLEMENT C (.inp(inp1), .outp(out_comp));
-    AND32 A32 (.inp1(inp1), .inp2(inp2), .outp(out_and));
-    XOR32 X32 (.inp1(inp1), .inp2(inp2), .outp(out_xor));
-    OR32 O32 (.inp1(inp1), .inp2(inp2), .outp(out_or));
-    DECREMENT DE32 (.inp1(inp1), .outp(out_de), .carryout(carryout_de));
-    ADD32 AD32 (.inp1(inp1), .inp2(inp2), .outp(out_add), .overflow(overflow_add), .carryout(carryout_add));
-    SUB32 SU32 (.inp1(inp1), .inp2(inp2), .Subout(out_sub), .carryout(carryout_sub));
-    INCREMENT IN32 (.inp1(inp1), .outp(out_inc), .overflow(overflow_in), .carryout(carryout_in));
+    wire [31 : 0] temp_add_32bit, temp_add_1bit, temp_sub_32bit, temp_sub_1bit, temp_and, temp_or, temp_xor, temp_comp, temp_shift_left, temp_shift_right;
+    wire temp_lt, temp_gt, temp_eq;
+    wire overflow_add_32bit, overflow_add_1bit;
 
-    always @(*) begin
-        if (sel_alu == 3'b000) begin
-            temp_out <= out_comp;
-        end
-        else if (sel_alu == 3'b001) begin
-            temp_out <= out_and;
-        end
-        else if (sel_alu == 3'b010) begin
-            temp_out <= out_xor;
-        end
-        else if (sel_alu == 3'b011) begin
-            temp_out <= out_or;
-        end
-        else if (sel_alu == 3'b100) begin
-            temp_out <= out_de;
-            temp_carry <= carryout_de;
-        end
-        else if (sel_alu == 3'b101) begin
-            temp_out <= out_add;
-            temp_carry <= carryout_add;
-            temp_over <= overflow_add;
-        end
-        else if (sel_alu == 3'b110) begin
-            temp_out <= out_sub;
-            temp_carry <= carryout_sub;
-        end
-        else if (sel_alu == 3'b111) begin
-            temp_out <= out_inc;
-            temp_carry <= carryout_in;
-        end
-    end
+    ADDER_32bit a32 (.inp_1(inp_1), .inp_2(inp_2), .result(temp_add_32bit), .overflow(overflow_add_32bit));
+    ADDER_1bit a1 (.inp_1(inp_1), .result(temp_add_1bit), .overflow(overflow_add_1bit));
+    SUB_32bit s32 (.inp_1(inp_1), .inp_2(inp_2), .result(temp_sub_32bit));
+    SUB_1bit s1 (.inp_1(inp_1), .result(temp_sub_1bit));
+    AND32 an32 (.inp_1(inp_1), .inp_2(inp_2), .result(temp_and));
+    OR32 o32 (.inp_1(inp_1), .inp_2(inp_2), .result(temp_or));
+    XOR32 x32 (.inp_1(inp_1), .inp_2(inp_2), .result(temp_xor));
+    COMPLEMENT c (.inp_1(inp_1), .result(temp_comp));
+    COMPARE cp (.inp_1(inp_1), .inp_2(inp_2), .lt(temp_lt), .gt(temp_gt), .eq(temp_eq));
+    SHIFT_LEFT sl (.inp_1(inp_1), .inp_2(inp_2[4 : 0]), .outp(temp_shift_left));
+    SHIFT_RIGHT sr (.inp_1(inp_1), .inp_2(inp_2[4 : 0]), .outp(temp_shift_right));
 
     always @(*) begin
-        outp = temp_out;
-        overflow = temp_over;
+        if(sel_alu == 4'b0000) begin
+            result = temp_comp;
+        end
+        else if (sel_alu == 4'b0001) begin
+            result = temp_and;
+        end
+        else if (sel_alu == 4'b0010) begin
+            result = temp_xor;
+        end
+        else if (sel_alu == 4'b0011) begin
+            result = temp_or;
+        end
+        else if (sel_alu == 4'b0100) begin
+            result = temp_sub_1bit;
+        end
+        else if (sel_alu == 4'b0101) begin
+            result = temp_add_32bit;
+            overflow = overflow_add_32bit;
+        end
+        else if (sel_alu == 4'b0110) begin
+            result = temp_sub_32bit;
+        end
+        else if (sel_alu == 4'b0111) begin
+            result = temp_add_1bit;
+            overflow = overflow_add_1bit;
+        end
+        else if (sel_alu == 4'b1000) begin
+            result = 32'd0;
+            lt = temp_lt;
+            gt = temp_gt;
+            eq = temp_eq;
+        end
+        else if (sel_alu == 4'b1001) begin
+            result = temp_shift_left;
+        end
+        else if (sel_alu == 4'b1010) begin
+            result = temp_shift_right;
+        end
     end
 endmodule
 
-`endif 
+`endif
