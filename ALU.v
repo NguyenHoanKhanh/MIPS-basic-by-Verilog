@@ -137,7 +137,7 @@ module SUB32 (
     endgenerate
 endmodule 
 
-module complement (
+module COMPLEMENT (
     inp, outp
 );
     input [31 : 0] inp;
@@ -159,7 +159,7 @@ module ALU (
     reg [31 : 0] temp_out;
     reg temp_carry, temp_over;
 
-    complement C (.inp(inp1), .outp(out_comp));
+    COMPLEMENT C (.inp(inp1), .outp(out_comp));
     AND32 A32 (.inp1(inp1), .inp2(inp2), .outp(out_and));
     XOR32 X32 (.inp1(inp1), .inp2(inp2), .outp(out_xor));
     OR32 O32 (.inp1(inp1), .inp2(inp2), .outp(out_or));
