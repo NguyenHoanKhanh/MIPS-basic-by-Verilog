@@ -6,31 +6,33 @@
 
 
 module datapath (
-    clk, rst, Instr, Reg_Dst, Reg_Write, Alu_Src, Alu_Control, Mem_Write, Mem_Read, Mem_To_Reg, Data_Out   
+    clk, rst, Instr, Reg_Dst, Reg_Write, Alu_Src, Alu_Control, Mem_Write, Mem_Read, Mem_To_Reg, Data_Out, Shamt_Sel
 );
     input clk, rst;
     input [31 : 0] Instr;
     input Reg_Dst;
     input Reg_Write;
     input Alu_Src; 
+    input Shamt_Sel;
     input [3 : 0] Alu_Control;
     input Mem_Write;
     input Mem_Read;
     input Mem_To_Reg;
     output [31 : 0] Data_Out;
-    output lt, gt, eq;
 
     wire [4 : 0] Write_Address;
     wire [31 : 0] Read_Data_1;
     wire [31 : 0] Read_Data_2;
+    wire [31 : 0] Value_Shamt;
     wire [31 : 0] Sign_extend;
     wire [31 : 0] Data_in_ALU;
     wire [31 : 0] Result_alu;
     wire Overflow;
     wire [31 : 0] Read_Data_Mem;
     wire [31 : 0] Write_Data;
-    wire [4 : 0] rs, rt, rd;
-
+    wire [31 : 0] select_1;
+    wire [4 : 0] rs, rt, rd, shamt;
+    assign Value_Shamt = {27'd0, Instr[10 : 6]};
     assign rs = Instr[25 : 21];
     assign rt = Instr[20 : 16];
     assign rd = Instr[15 : 11];
@@ -50,17 +52,15 @@ module datapath (
     );
 
     assign Sign_extend = {{16{Instr[15]}}, Instr[15 : 0]};     
-    assign Data_in_ALU = (Alu_Src == 1'b1) ? Sign_extend : Read_Data_2;
+    assign select_1 = (Alu_Src == 1'b1) ? Sign_extend : Read_Data_2;
+    assign Data_in_ALU = (Shamt_Sel == 1'b1) ? Value_Shamt : select_1;
 
     ALU al (
         .inp_1(Read_Data_1), 
         .inp_2(Data_in_ALU), 
         .result(Result_alu), 
-        .sel_alu(Alu_Control), 
-        .overflow(Overflow),
-        .lt(lt),
-        .gt(gt),
-        .eq(eq)
+        .sel_alu(Alu_Control),
+        .overflow(Overflow)
     );
 
     data_memory dm (
