@@ -73,6 +73,14 @@ module processor ();
         Instr = {LW, 5'd8, 5'd8, 16'd5};
         @(posedge clk);
         Instr = {DEC, 5'd8, 5'd10, 16'd0};
+        @(posedge clk);
+        Instr = {LW, 5'd11, 5'd11, 16'd5};
+        @(posedge clk);
+        Instr = {SHIFT_LEFT, 5'd11, 5'd12, 5'd0, 5'd2, 6'd0};
+        @(posedge clk);
+        Instr = {LW, 5'd13, 5'd13, 16'd8};
+        @(posedge clk);
+        Instr = {SHIFT_RIGHT, 5'd13, 5'd14, 5'd0, 5'd2, 6'd0};
         #20; $finish;
     end
 
