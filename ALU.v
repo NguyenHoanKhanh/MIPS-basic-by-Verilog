@@ -143,30 +143,14 @@ module COMPLEMENT (
     endgenerate
 endmodule
 
-// module COMPARE (
-//     inp_1, inp_2, lt, gt, eq
-// );
-//     input [31 : 0] inp_1, inp_2;
-//     output reg lt, gt, eq;
-    
-//     always@(*) begin
-//         lt = 1'b0;
-//         gt = 1'b0;
-//         eq = 1'b0;
-//         if(inp_1 < inp_2) begin
-//             lt = 1'b1;
-//             $display("Number 1 is smaller than Number 2");
-//         end
-//         else if(inp_1 == inp_2) begin
-//             eq = 1'b1;
-//             $display("Number 1 is equal Number 2");
-//         end
-//         else if(inp_1 > inp_2) begin
-//             gt = 1'b1;
-//             $display("Number 1 is bigger than Number 2");
-//         end
-//     end
-// endmodule
+module COMPARE (
+    inp_1, inp_2, outp
+);
+    input [31 : 0] inp_1, inp_2;
+    output [31 : 0] outp;
+
+    assign outp = (inp_1 == inp_2) ? 32'd1 : 32'd0;
+endmodule
 
 module SHIFT_LEFT (
     inp_1, inp_2, outp
@@ -194,11 +178,9 @@ module ALU (
     input [31 : 0] inp_1, inp_2;
     input [3 : 0] sel_alu;
     output reg [31 : 0] result;
-    // output reg lt, gt, eq;
     output reg overflow;
 
-    wire [31 : 0] temp_add_32bit, temp_add_1bit, temp_sub_32bit, temp_sub_1bit, temp_and, temp_or, temp_xor, temp_comp, temp_shift_left, temp_shift_right;
-    wire temp_lt, temp_gt, temp_eq;
+    wire [31 : 0] temp_add_32bit, temp_add_1bit, temp_sub_32bit, temp_sub_1bit, temp_and, temp_or, temp_xor, temp_comp, temp_shift_left, temp_shift_right, temp_compare;
     wire overflow_add_32bit, overflow_add_1bit;
 
     ADDER_32bit a32 (.inp_1(inp_1), .inp_2(inp_2), .result(temp_add_32bit), .overflow(overflow_add_32bit));
@@ -209,7 +191,7 @@ module ALU (
     OR32 o32 (.inp_1(inp_1), .inp_2(inp_2), .result(temp_or));
     XOR32 x32 (.inp_1(inp_1), .inp_2(inp_2), .result(temp_xor));
     COMPLEMENT c (.inp_1(inp_1), .result(temp_comp));
-    // COMPARE cp (.inp_1(inp_1), .inp_2(inp_2), .lt(temp_lt), .gt(temp_gt), .eq(temp_eq));
+    COMPARE cp (.inp_1(inp_1), .inp_2(inp_2), .outp(temp_compare));
     SHIFT_LEFT sl (.inp_1(inp_1), .inp_2(inp_2[4 : 0]), .outp(temp_shift_left));
     SHIFT_RIGHT sr (.inp_1(inp_1), .inp_2(inp_2[4 : 0]), .outp(temp_shift_right));
 
@@ -240,12 +222,9 @@ module ALU (
             result = temp_add_1bit;
             overflow = overflow_add_1bit;
         end
-        // else if (sel_alu == 4'b1000) begin
-        //     result = 32'd0;
-        //     lt = temp_lt;
-        //     gt = temp_gt;
-        //     eq = temp_eq;
-        // end
+        else if (sel_alu == 4'b1000) begin
+            result = temp_compare;
+        end
         else if (sel_alu == 4'b1001) begin
             result = temp_shift_left;
         end

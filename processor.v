@@ -9,7 +9,7 @@ module processor ();
     
     wire Reg_Dst, Reg_Write, Alu_Src, Mem_Write, Mem_Read, Mem_To_Reg, Shamt_Sel;
     wire [3 : 0] Alu_Control;
-    parameter ADD = 6'b000001, ADDI = 6'b001011, SUB = 6'b000010, SUBI = 6'b001100, INC = 6'b000011, DEC = 6'b000100, AND = 6'b000101, OR = 6'b000110, XOR = 6'b000111, NOT = 6'b001000, SHIFT_LEFT = 6'b001001, SHIFT_RIGHT = 6'b001010, LW = 6'b100010, SW = 6'b100100;
+    parameter ADD = 6'b000001, ADDI = 6'b001011, SUB = 6'b000010, SUBI = 6'b001100, INC = 6'b000011, DEC = 6'b000100, AND = 6'b000101, OR = 6'b000110, XOR = 6'b000111, NOT = 6'b001000, SHIFT_LEFT = 6'b001001, SHIFT_RIGHT = 6'b001010, LW = 6'b100010, SW = 6'b100100, COMPARE = 6'b001101;
 
     datapath dp (
         .clk(clk),
@@ -106,8 +106,9 @@ module processor ();
         @(posedge clk);
         //SUBI
         Instr = {SUBI, 5'd2, 5'd15, 16'd1};
+        //COMPARE
+        Instr = {COMPARE, 5'd2, 5'd1, 5'd15, 11'd0};
         #20; $finish;
     end
-
 endmodule
 `endif

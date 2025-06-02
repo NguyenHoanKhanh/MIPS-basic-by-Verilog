@@ -7,7 +7,7 @@ module controller (
     input [5 : 0] opcode;
     output reg Reg_Dst, Reg_Write, Alu_Src, Mem_Write, Mem_Read, Mem_To_Reg, Shamt_Sel;
     output reg [3 : 0] Alu_Control;
-    parameter ADD = 6'b000001,  ADDI = 6'b001011, SUB = 6'b000010, SUBI = 6'b001100, INC = 6'b000011, DEC = 6'b000100, AND = 6'b000101, OR = 6'b000110, XOR = 6'b000111, NOT = 6'b001000, SHIFT_LEFT = 6'b001001, SHIFT_RIGHT = 6'b001010, LW = 6'b100010, SW = 6'b100100;
+    parameter ADD = 6'b000001,  ADDI = 6'b001011, SUB = 6'b000010, SUBI = 6'b001100, INC = 6'b000011, DEC = 6'b000100, AND = 6'b000101, OR = 6'b000110, XOR = 6'b000111, NOT = 6'b001000, SHIFT_LEFT = 6'b001001, SHIFT_RIGHT = 6'b001010, LW = 6'b100010, SW = 6'b100100, COMPARE = 6'b001101;
 
     always @(*) begin
         case (opcode)
@@ -46,6 +46,16 @@ module controller (
                 Reg_Write = 1'b1;
                 Alu_Src = 1'b1;
                 Alu_Control = 4'b0110;
+                Mem_Write = 1'b0;
+                Mem_Read = 1'b0;
+                Mem_To_Reg = 1'b1;
+                Shamt_Sel = 1'b0;
+            end
+            COMPARE : begin
+                Reg_Dst = 1'b1;
+                Reg_Write = 1'b1;
+                Alu_Src = 1'b0;
+                Alu_Control = 4'b1000;
                 Mem_Write = 1'b0;
                 Mem_Read = 1'b0;
                 Mem_To_Reg = 1'b1;
