@@ -11,20 +11,20 @@ module controller (
 
     always @(*) begin
         case (opcode)
-            ADDI : begin
+            ADD : begin
                 Reg_Dst = 1'b1;
                 Reg_Write = 1'b1;
-                Alu_Src = 1'b1;
+                Alu_Src = 1'b0;
                 Alu_Control = 4'b0101;
                 Mem_Write = 1'b0;
                 Mem_Read = 1'b0;
                 Mem_To_Reg = 1'b1;
                 Shamt_Sel = 1'b0;
             end
-            ADD : begin
+            ADDI : begin
                 Reg_Dst = 1'b1;
                 Reg_Write = 1'b1;
-                Alu_Src = 1'b0;
+                Alu_Src = 1'b1;
                 Alu_Control = 4'b0101;
                 Mem_Write = 1'b0;
                 Mem_Read = 1'b0;
