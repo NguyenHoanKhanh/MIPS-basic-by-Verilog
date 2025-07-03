@@ -2,7 +2,7 @@
 `define PROCESSOR_V
 `include "datapath.v"
 `include "controller.v"
-module processor ();
+module processor;
     reg clk, rst;
     reg [31 : 0] Instr;
     wire [31 : 0] Data_Out; 
