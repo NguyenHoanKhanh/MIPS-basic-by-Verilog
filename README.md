@@ -3,5 +3,7 @@ Designed and implemented a 32-bit MIPS-style processor in Verilog with a modular
 
 ## 🚀 Key Feature : 
 • Logic Parsing : Architecture of MIPS 32bit is customed by me to approriate with study in class.
+
 &nbsp;&nbsp;• Optimize some block to restrict the number of blocks too much in the architecture.
+
 &nbsp;&nbsp;• Add some more instructions to the original architecture.
