@@ -9,7 +9,6 @@ Designed and implemented a 32-bit MIPS-style processor in Verilog with a modular
 &nbsp;&nbsp;• Add some more instructions to the original architecture.
 
 ## 🧩 Project Components : 
-
 • Architecture built in order :
 
 &nbsp;&nbsp;• Instruction will be fetching from component external;
