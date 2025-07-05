@@ -1,21 +1,27 @@
 ## 🧠 About the Project :
-Designed and implemented a 32-bit MIPS-style processor in Verilog with a modular architecture including datapath unit, control unit and test bench. This project can handle some instruction fundamental and easy to study how to construct a basic architecture MIPS.
+Designed and implemented a 32-bit MIPS-style processor in Verilog with a modular architecture consisting of a datapath unit, control unit, and comprehensive testbench. This project supports a set of fundamental instructions and provides a simplified yet educational view into building a basic MIPS processor architecture.
 
 ## 🚀 Key Feature : 
-• Logic Parsing : Architecture of MIPS 32bit is customed by me to approriate with study in class.
+• Custom Logic Parsing: The 32-bit MIPS architecture is customized to suit the requirements and constraints of in-class learning.
 
-&nbsp;&nbsp;• Optimize some block to restrict the number of blocks too much in the architecture.
+• Optimized Architecture: Certain components have been optimized to minimize the number of logic blocks used, ensuring clarity and efficiency.
 
-&nbsp;&nbsp;• Add some more instructions to the original architecture.
+• Extended Instruction Set: Additional instructions beyond the standard MIPS set have been implemented to enhance functionality and experimentation.
 
 ## 🧩 Project Components : 
-• Architecture built in order :
+The processor architecture is structured in sequential pipeline stages:
 
-&nbsp;&nbsp;• IF stage : Instruction will be fetching from component external. Instruction will be fetching from component external. In my architecture there are some errors that make it impossible to extract commands from external sources such as .txt file, so I use the solution of directly accessing for the testbench.
+• IF Stage (Instruction Fetch):
+Instructions are fetched from an external source. Due to limitations in interfacing with external files (e.g., .txt), the testbench is used to directly inject instructions for simulation purposes.
 
-&nbsp;&nbsp;• ID stage : Decoding to separate address of register necessary and is storaged by register file, if it has immediate value, it will be extend by extention block, and decode opcode send to control block. It is integrate into control block.
+• ID Stage (Instruction Decode):
+This stage decodes the instruction to extract register addresses. It retrieves the source register values from the register file, extends immediate values using the extension unit, and forwards the opcode to the control unit. The decoding and control logic are integrated within the control unit.
 
-&nbsp;&nbsp;• Register File : this block is use to storage value such as address of register sources (rs, rt) to send EX block, and address of destiniation register (rd). 
+• Register File:
+Responsible for storing and providing source register values (rs, rt) to the EX stage and for writing back the destination register (rd) values after execution.
 
-&nbsp;&nbsp;• EX stage : This block can handle some operation such as add AND, OR, XOR, ADD, SUB, increment, decrement, complement, compare, shift_left, shift_right.
+• EX Stage (Execution):
+Supports various operations including arithmetic (ADD, SUB, increment, decrement), logic (AND, OR, XOR, complement), comparison, and shift operations (shift left, shift right).
 
+• MEM/WB Stage (Memory and Writeback):
+Handles memory access operations for load and store instructions. It stores computed results and forwards them to the destination register (rd) for write-back.
