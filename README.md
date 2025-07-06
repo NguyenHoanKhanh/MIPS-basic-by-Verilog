@@ -11,7 +11,7 @@ Designed and implemented a 32-bit MIPS-style processor in Verilog with a modular
 ## 🧩 Project Components : 
 The processor architecture is structured in sequential pipeline stages:
 
-• IF Stage (Instruction Fetch):
+• IF Stage (Instruction Fetch in 'https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/processor.v') :
 Instructions are fetched from an external source. Due to limitations in interfacing with external files (e.g., .txt), the testbench is used to directly inject instructions for simulation purposes.
 
 • ID Stage (Instruction Decode):
@@ -26,4 +26,4 @@ Supports various operations including arithmetic (ADD, SUB, increment, decrement
 • MEM/WB Stage (Memory and Writeback):
 Handles memory access operations for load and store instructions. It stores computed results and forwards them to the destination register (rd) for write-back.
 
-After construct that architecture, it will be implement in 
+
