@@ -26,4 +26,6 @@ Supports various operations including arithmetic (ADD, SUB, increment, decrement
 • MEM/WB Stage (Memory and Writeback in [`data_memory.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/data_memory.v)):
 Handles memory access operations for load and store instructions. It stores computed results and forwards them to the destination register (rd) for write-back.
 
-
+## ✅ Evaluation : 
+After the project, student can understand and construct a fundamental architectur of MIPS 32 bit.
+The project may be need to improve in Instruction Fetch to fetching instructions easier than the current version.
