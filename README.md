@@ -25,3 +25,5 @@ Supports various operations including arithmetic (ADD, SUB, increment, decrement
 
 • MEM/WB Stage (Memory and Writeback):
 Handles memory access operations for load and store instructions. It stores computed results and forwards them to the destination register (rd) for write-back.
+
+After construct that architecture, it will be implement in 
