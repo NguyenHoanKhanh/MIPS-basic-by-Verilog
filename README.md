@@ -51,16 +51,14 @@ The processor is organized into five primary stages:
 
 2. Instruction Decode (ID) :
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Module : [`controller.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/controller.v) (decoding and control logic), [`register.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/register.v)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Module : [`controller.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/controller.v) (decoding and control logic), [`register.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/register.v) (register file)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Extracts opcode, source/destination register indices; performs immediate extension.
 
-3. Execution stage (EX) in [`ALU.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/ALU.v) and [`datapath.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/datapath.v)):
-Supports various operations including arithmetic (ADD, SUB, increment, decrement), logic (AND, OR, XOR, complement), comparison, and shift operations (shift left, shift right).
-
+3. Execution stage (EX) :
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Module : [`ALU.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/ALU.v) (executing operation) and [`datapath.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/datapath.v) (controlling execution)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Executes arithmetic, logic, comparison, and shift operations.
 4. Memory stage in [`data_memory.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/data_memory.v)):
-Handles memory access operations for load and store instructions. It stores computed results and forwards them to the destination register (rd) for write-back.
-
 5. Write - back stage (WB) : Data from MEM or ALU result written back into the register file.
 
 ## ✅ Evaluation : 
