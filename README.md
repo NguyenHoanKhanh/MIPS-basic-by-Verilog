@@ -45,7 +45,7 @@ The processor is organized into five primary stages:
 
 1. Instruction Fetch (IF) :
 
-&nbsp;&nbsp;• Module : [`processor.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/processor.v)) :
+&nbsp;&nbsp;&nbsp;&nbsp; • Module : [`processor.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/processor.v)) :
 
 &nbsp;&nbsp;• Fetches 32-bit instructions via testbench-injected vectors (no external file I/O)
 
