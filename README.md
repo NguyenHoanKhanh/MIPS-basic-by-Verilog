@@ -43,7 +43,8 @@ Key goals:
 ## 🏗️ Architecture & Pipeline Stages : 
 The processor is organized into five primary stages: 
 
-1. Instruction Fetch (IF)
+1. Instruction Fetch (IF) :
+
 • Module : [`processor.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/processor.v)) :
 
 • Fetches 32-bit instructions via testbench-injected vectors (no external file I/O)
