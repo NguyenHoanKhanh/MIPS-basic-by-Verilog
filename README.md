@@ -95,7 +95,7 @@ cd MIPS-basic-by-Verilog
 
 - **Results**:
 
-<img src="./assets/mips_result.png.png" width="800" alt="Results" />
+<img src="./assets/mips_result.png" width="800" alt="Results" />
 
 ## 🔧 Future Improvements 
 
