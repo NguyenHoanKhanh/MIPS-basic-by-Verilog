@@ -87,9 +87,15 @@ git clone https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog.git
 cd MIPS-basic-by-Verilog
 ```
 ## 🔬 Simulation and Testbench 
-Run with Icarus Verilog: iverilog -o mips_tb \ tb_processor.v \ processor.v \ controller.v \ register.v \ ALU.v \ datapath.v \ data_memory.v
-vvp mips_tb
-Optional waveform : gtkwave procee.vcd
+- **Run with Icarus Verilog**: iverilog -o mips_tb \ tb_processor.v \ processor.v \ controller.v \ register.v \ ALU.v \ datapath.v \ data_memory.v
+
+**vvp mips_tb**
+
+- **Optional waveform** : gtkwave procee.vcd
+
+- **Results**:
+
+<img src="./assets/mips_result.png.png" width="800" alt="Simulation and Testbench" />
 
 ## 🔧 Future Improvements 
 
