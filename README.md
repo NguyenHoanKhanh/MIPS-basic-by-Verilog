@@ -90,4 +90,5 @@ cd MIPS-basic-by-Verilog
 ## 🔬 Simulation and Testbench 
 Run with Icarus Verilog: iverilog -o mips_tb tb_processor.v processor.v controller.v register.v ALU.v datapath.v data_memory.v
 vvp mips_tb
-Optional waveform :
+Optional waveform : gtkwave procee.vcd
+
