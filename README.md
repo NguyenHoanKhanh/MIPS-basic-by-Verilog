@@ -1,4 +1,4 @@
-## 📋 Table of Contents
+## 📋 Table of Contents :
 
 1. [Project Overview](#project-overview)
 
@@ -19,6 +19,18 @@
 9. [Future Improvements](#future-improvements)
 
 10. [Contributing](#contributing)
+
+## 📝 Project overview :
+
+A 32-bit MIPS-style processor implemented in Verilog with a clean, modular pipeline design. This project aims to provide an educational platform for understanding the fundamental components and data flow of a MIPS processor, including instruction fetch, decode, execution, memory access, and write-back.
+
+Key goals:
+
+• Illustrate core processor pipeline concepts
+
+• Simplify interfacing for in-class simulation
+
+• Offer extensibility for custom instructions and enhancements
 
 ## 🚀 Key Feature : 
 • Custom Logic Parsing: The 32-bit MIPS architecture is customized to suit the requirements and constraints of in-class learning.
