@@ -50,8 +50,9 @@ The processor is organized into five sequential stages:
    - **Module:** `data_memory.v`  
    - Executes load/store operations between register and memory.  
 5. **Write-Back (WB):**  
-   - Writes ALU or memory results back into the register file.  
-
+   - Writes ALU or memory results back into the register file.
+- **Architecture**:
+<img src="./assets/mips_archi.png" width="800" alt="Archi" />
 ---
 
 ## 🧮 Instruction Set
