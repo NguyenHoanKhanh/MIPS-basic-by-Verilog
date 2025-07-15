@@ -93,10 +93,10 @@ Optional waveform : gtkwave procee.vcd
 
 ## 🔧 Future Improvements 
 
-- **External Instruction Memory: Support .hex/.txt instruction loading.
+- **External Instruction Memory**: Support .hex/.txt instruction loading.
 
-- **Hazard Detection & Forwarding: Add stall logic and forwarding paths.
+- **Hazard Detection & Forwarding**: Add stall logic and forwarding paths.
 
-- **Exceptions/Interrupts: Implement exception handling.
+- **Exceptions/Interrupts**: Implement exception handling.
 
-- **Branch Prediction: Improve branch throughput.
+- **Branch Prediction**: Improve branch throughput.
