@@ -43,23 +43,31 @@ Key goals:
 ## 🏗️ Architecture & Pipeline Stages : 
 The processor is organized into five primary stages: 
 
-1. Instruction Fetch (IF) :
+1. Instruction Fetch (IF stage) :
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Module : [`processor.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/processor.v)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Fetches 32-bit instructions via testbench-injected vectors (no external file I/O)
 
-2. Instruction Decode (ID) :
+2. Instruction Decode (ID stage) :
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Module : [`controller.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/controller.v) (decoding and control logic), [`register.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/register.v) (register file)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Extracts opcode, source/destination register indices; performs immediate extension.
 
-3. Execution stage (EX) :
+3. Execution stage (EX stage) :
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Module : [`ALU.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/ALU.v) (executing operation) and [`datapath.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/datapath.v) (controlling execution)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Executes arithmetic, logic, comparison, and shift operations.
-4. Memory stage in [`data_memory.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/data_memory.v)):
-5. Write - back stage (WB) : Data from MEM or ALU result written back into the register file.
+
+4. Memory (MEM stage) :
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Module : [`data_memory.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/data_memory.v)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Handles load/store operations to/from data memory.
+
+6. Write back (WB stage) : Data from MEM or ALU result written back into the register file.
 
 ## ✅ Evaluation : 
 After the project, student can understand and construct a fundamental architectur of MIPS 32 bit.
