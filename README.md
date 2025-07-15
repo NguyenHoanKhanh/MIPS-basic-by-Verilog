@@ -20,7 +20,7 @@
 
 10. [Contributing](#contributing)
 
-## 📝 Project overview :
+## 📝 Project overview 
 A 32-bit MIPS-style processor implemented in Verilog with a clean, modular pipeline design. This project aims to provide an educational platform for understanding the fundamental components and data flow of a MIPS processor, including instruction fetch, decode, execution, memory access, and write-back.
 
 Key goals:
@@ -31,7 +31,7 @@ Key goals:
 
 • Offer extensibility for custom instructions and enhancements
 
-## 🚀 Key Feature : 
+## 🚀 Key Feature 
 • Custom Logic Parsing: Tailored 32-bit MIPS instruction formats to align with course requirements.
 
 • Optimized Resource Usage: Streamlined modules minimize combinational logic without sacrificing clarity.
@@ -40,7 +40,7 @@ Key goals:
 
 • Modular Design: Separate modules for control, datapath, ALU, register file, and data memory improve maintainability.
 
-## 🏗️ Architecture & Pipeline Stages : 
+## 🏗️ Architecture & Pipeline Stages 
 The processor is organized into five primary stages: 
 
 1. Instruction Fetch (IF stage) :
@@ -71,6 +71,3 @@ The processor is organized into five primary stages:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Data from MEM or ALU result written back into the register file.
 
-## ✅ Evaluation : 
-After the project, student can understand and construct a fundamental architectur of MIPS 32 bit.
-The project may be need to improve in Instruction Fetch to fetching instructions easier than the current version.
