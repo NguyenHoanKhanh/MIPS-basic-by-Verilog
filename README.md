@@ -13,7 +13,6 @@
 7. 🔬 [Simulation and Testbench](#simulation-and-testbench)  
 8. 💡 [Usage Example](#usage-example)  
 9. 🔧 [Future Improvements](#future-improvements)  
-10. 🤝 [Contributing](#contributing)   
 
 ---
 
@@ -92,3 +91,12 @@ Run with Icarus Verilog: iverilog -o mips_tb tb_processor.v processor.v controll
 vvp mips_tb
 Optional waveform : gtkwave procee.vcd
 
+## 🔧 Future Improvements 
+
+- **External Instruction Memory: Support .hex/.txt instruction loading.
+
+- **Hazard Detection & Forwarding: Add stall logic and forwarding paths.
+
+- **Exceptions/Interrupts: Implement exception handling.
+
+- **Branch Prediction: Improve branch throughput.
