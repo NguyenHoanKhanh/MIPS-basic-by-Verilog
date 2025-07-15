@@ -67,7 +67,9 @@ The processor is organized into five primary stages:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Handles load/store operations to/from data memory.
 
-6. Write back (WB stage) : Data from MEM or ALU result written back into the register file.
+5. Write back (WB stage) :
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Data from MEM or ALU result written back into the register file.
 
 ## ✅ Evaluation : 
 After the project, student can understand and construct a fundamental architectur of MIPS 32 bit.
