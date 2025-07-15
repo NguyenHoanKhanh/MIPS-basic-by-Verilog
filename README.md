@@ -6,7 +6,7 @@
 
 3. [Architecture & Pipeline Stages](#architecture-pipeline-stages)
 
-4. Instruction Set
+4. [Instruction Set](#instruction-set)
 
 5. Module Breakdown
 
