@@ -14,11 +14,11 @@
 
 7. [Simulation & Testbench](#simulation-testbench)
 
-8. Usage Example
+8. [Usage Example](#usage-example)
 
-9. Future Improvements
+9. [Future Improvements](#future-improvements)
 
-10. Contributing
+10. [Contributing](#contributing)
 
 ## 🚀 Key Feature : 
 • Custom Logic Parsing: The 32-bit MIPS architecture is customized to suit the requirements and constraints of in-class learning.
