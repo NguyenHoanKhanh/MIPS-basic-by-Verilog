@@ -21,7 +21,6 @@
 10. [Contributing](#contributing)
 
 ## 📝 Project overview :
-
 A 32-bit MIPS-style processor implemented in Verilog with a clean, modular pipeline design. This project aims to provide an educational platform for understanding the fundamental components and data flow of a MIPS processor, including instruction fetch, decode, execution, memory access, and write-back.
 
 Key goals:
@@ -41,23 +40,24 @@ Key goals:
 
 • Modular Design: Separate modules for control, datapath, ALU, register file, and data memory improve maintainability.
 
-## 🧩 Project Components : 
-The processor architecture is structured in sequential pipeline stages:
+## 🏗️ Architecture & Pipeline Stages : 
+The processor is organized into five primary stages: 
 
-• IF Stage (Instruction Fetch in  [`processor.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/processor.v)) :
+1. Instruction Fetch (IF) in  [`processor.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/processor.v)) :
 Instructions are fetched from an external source. Due to limitations in interfacing with external files (e.g., .txt), the testbench is used to directly inject instructions for simulation purposes.
 
-• ID Stage (Instruction Decode in [`controller.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/controller.v)):
+2. Instruction Decode (ID) in [`controller.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/controller.v)):
 This stage decodes the instruction to extract register addresses. It retrieves the source register values from the register file, extends immediate values using the extension unit, and forwards the opcode to the control unit. The decoding and control logic are integrated within the control unit.
 
-• Register File ([`controller.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/register.v)):
-Responsible for storing and providing source register values (rs, rt) to the EX stage and for writing back the destination register (rd) values after execution.
-
-• EX Stage (Execution in [`ALU.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/ALU.v) and [`datapath.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/datapath.v)):
+3. Execution stage (EX) in [`ALU.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/ALU.v) and [`datapath.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/datapath.v)):
 Supports various operations including arithmetic (ADD, SUB, increment, decrement), logic (AND, OR, XOR, complement), comparison, and shift operations (shift left, shift right).
 
-• MEM/WB Stage (Memory and Writeback in [`data_memory.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/data_memory.v)):
+4. Memory stage in [`data_memory.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/data_memory.v)):
 Handles memory access operations for load and store instructions. It stores computed results and forwards them to the destination register (rd) for write-back.
+
+5. Write - back stage (WB) :
+
+Data from MEM or ALU result written back into the register file.
 
 ## ✅ Evaluation : 
 After the project, student can understand and construct a fundamental architectur of MIPS 32 bit.
