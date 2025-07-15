@@ -33,11 +33,13 @@ Key goals:
 • Offer extensibility for custom instructions and enhancements
 
 ## 🚀 Key Feature : 
-• Custom Logic Parsing: The 32-bit MIPS architecture is customized to suit the requirements and constraints of in-class learning.
+• Custom Logic Parsing: Tailored 32-bit MIPS instruction formats to align with course requirements.
 
-• Optimized Architecture: Certain components have been optimized to minimize the number of logic blocks used, ensuring clarity and efficiency.
+• Optimized Resource Usage: Streamlined modules minimize combinational logic without sacrificing clarity.
 
-• Extended Instruction Set: Additional instructions beyond the standard MIPS set have been implemented to enhance functionality and experimentation.
+• Extended Instruction Set: Implements additional arithmetic, logic, and shift operations beyond the basic MIPS subset.
+
+• Modular Design: Separate modules for control, datapath, ALU, register file, and data memory improve maintainability.
 
 ## 🧩 Project Components : 
 The processor architecture is structured in sequential pipeline stages:
