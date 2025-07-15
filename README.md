@@ -13,8 +13,7 @@
 7. 🔬 [Simulation and Testbench](#simulation-and-testbench)  
 8. 💡 [Usage Example](#usage-example)  
 9. 🔧 [Future Improvements](#future-improvements)  
-10. 🤝 [Contributing](#contributing)  
-11. 📜 [License](#license)  
+10. 🤝 [Contributing](#contributing)   
 
 ---
 
@@ -87,3 +86,8 @@ The processor is organized into five sequential stages:
 ```bash
 git clone https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog.git
 cd MIPS-basic-by-Verilog
+```
+## 🔬 Simulation and Testbench 
+Run with Icarus Verilog: iverilog -o mips_tb tb_processor.v processor.v controller.v register.v ALU.v datapath.v data_memory.v
+vvp mips_tb
+Optional waveform :
