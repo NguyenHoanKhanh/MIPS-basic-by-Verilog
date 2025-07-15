@@ -1,5 +1,24 @@
-## 🧠 About the Project :
-Designed and implemented a 32-bit MIPS-style processor in Verilog with a modular architecture consisting of a datapath unit, control unit, and comprehensive testbench. This project supports a set of fundamental instructions and provides a simplified yet educational view into building a basic MIPS processor architecture.
+📋 Table of Contents
+
+1. Project Overview
+
+2. Key Features
+
+3. Architecture & Pipeline Stages
+
+4. Instruction Set
+
+5. Module Breakdown
+
+6. Getting Started
+
+7. Simulation & Testbench
+
+8. Usage Example
+
+9. Future Improvements
+
+10. Contributing
 
 ## 🚀 Key Feature : 
 • Custom Logic Parsing: The 32-bit MIPS architecture is customized to suit the requirements and constraints of in-class learning.
