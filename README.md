@@ -8,11 +8,11 @@
 
 4. [Instruction Set](#instruction-set)
 
-5. Module Breakdown
+5. [Module Breakdown](#module-breakdown)
 
-6. Getting Started
+6. [Getting Started](#getting-started)
 
-7. Simulation & Testbench
+7. [Simulation & Testbench](#simulation-testbench)
 
 8. Usage Example
 
