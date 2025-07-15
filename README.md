@@ -45,9 +45,9 @@ The processor is organized into five primary stages:
 
 1. Instruction Fetch (IF) :
 
-• Module : [`processor.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/processor.v)) :
+&nbsp;&nbsp;• Module : [`processor.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/processor.v)) :
 
-• Fetches 32-bit instructions via testbench-injected vectors (no external file I/O)
+&nbsp;&nbsp;• Fetches 32-bit instructions via testbench-injected vectors (no external file I/O)
 
 2. Instruction Decode (ID) in [`controller.v`](https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog/blob/main/controller.v)):
 This stage decodes the instruction to extract register addresses. It retrieves the source register values from the register file, extends immediate values using the extension unit, and forwards the opcode to the control unit. The decoding and control logic are integrated within the control unit.
