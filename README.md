@@ -1,10 +1,10 @@
 ## 📋 Table of Contents
 
-1.  [Project Overview](#project-overview)
+1. [Project Overview](#project-overview)
 
-2. Key Features
+2. [Key Features](#key-features)
 
-3. Architecture & Pipeline Stages
+3. [Architecture & Pipeline Stages](#architecture-pipeline-stages)
 
 4. Instruction Set
 
