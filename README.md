@@ -62,7 +62,6 @@ The processor is organized into five sequential stages:
 | Logical      | `AND`, `OR`, `XOR`, `NOT`                    |
 | Comparison   | `SLT`, `SLL`, `SRL`, `SRA`                   |
 | Memory       | `LW` (Load Word), `SW` (Store Word)          |
-| Branch/Jump  | `BEQ`, `BNE`, `J`                            |
 
 ---
 
