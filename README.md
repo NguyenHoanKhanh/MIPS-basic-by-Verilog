@@ -75,7 +75,6 @@ The processor is organized into five sequential stages:
 | `ALU.v`          | Arithmetic and logic operations                                     |
 | `datapath.v`     | Muxing, forwarding logic, and ALU integration                       |
 | `data_memory.v`  | Data memory model for load/store                                    |
-| `tb_processor.v` | Testbench injecting instructions and verifying outputs              |
 
 ---
 
