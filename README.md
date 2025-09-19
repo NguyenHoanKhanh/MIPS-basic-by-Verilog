@@ -10,8 +10,7 @@
 5. [Module Breakdown](#module-breakdown)  
 6. [Getting Started](#getting-started)  
 7. [Simulation and Testbench](#simulation-and-testbench)  
-8. [Usage Example](#usage-example)  
-9. [Future Improvements](#future-improvements)
+8. [Future Improvements](#future-improvements)
 ---
 
 <a name="project-overview"></a>
