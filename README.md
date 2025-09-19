@@ -14,6 +14,7 @@
 9. [Future Improvements](#future-improvements)
 ---
 
+<a name="project-overview"></a>
 ## 📝 Project Overview
 A 32-bit MIPS-style processor implemented in Verilog with a clean, modular pipeline design. This project provides an educational platform for understanding core processor components: instruction fetch, decode, execution, memory access, and write-back.
 
@@ -24,6 +25,7 @@ A 32-bit MIPS-style processor implemented in Verilog with a clean, modular pipel
 
 ---
 
+<a name="key-features"></a>
 ## 🚀 Key Features
 - **Custom Logic Parsing:** Tailored 32-bit MIPS instruction formats to fit course constraints.  
 - **Optimized Resource Usage:** Streamlined modules minimize combinational logic without sacrificing clarity.  
@@ -32,6 +34,7 @@ A 32-bit MIPS-style processor implemented in Verilog with a clean, modular pipel
 
 ---
 
+<a name="architecture-and-pipeline-stages"></a>
 ## 🏗️ Architecture and Pipeline Stages
 The processor is organized into five sequential stages:
 
@@ -53,6 +56,7 @@ The processor is organized into five sequential stages:
 <img src="./assets/mips_archi.png" width="800" alt="Archi" />
 ---
 
+<a name="instruction-set"></a>
 ## 🧮 Instruction Set
 | Category     | Instructions                                 |
 |--------------|----------------------------------------------|
@@ -63,6 +67,7 @@ The processor is organized into five sequential stages:
 
 ---
 
+<a name="module-breakdown"></a>
 ## 🗂️ Module Breakdown
 | File             | Responsibility                                                      |
 |------------------|---------------------------------------------------------------------|
@@ -75,6 +80,7 @@ The processor is organized into five sequential stages:
 
 ---
 
+<a name="getting-started"></a>
 ## 🏁 Getting Started
 **Prerequisites:** Verilog simulator (ModelSim, Icarus, Vivado), GNU Make (optional)
 
@@ -83,6 +89,7 @@ The processor is organized into five sequential stages:
 git clone https://github.com/NguyenHoanKhanh/MIPS-basic-by-Verilog.git
 cd MIPS-basic-by-Verilog
 ```
+<a name="simulation-and-testbench"></a>
 ## 🔬 Simulation and Testbench 
 - **Run with Icarus Verilog**: iverilog -o mips_tb \ tb_processor.v \ processor.v \ controller.v \ register.v \ ALU.v \ datapath.v \ data_memory.v - vvp mips_tb
 
@@ -92,6 +99,7 @@ cd MIPS-basic-by-Verilog
 
 <img src="./assets/mips_result.png" width="800" alt="Results" />
 
+<a name="future-improvements"></a>
 ## 🔧 Future Improvements 
 
 - **External Instruction Memory**: Support .hex/.txt instruction loading.
